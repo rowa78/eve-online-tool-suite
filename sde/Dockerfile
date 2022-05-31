@@ -1,18 +1,17 @@
-FROM alpine:latest AS builder
-ADD https://www.fuzzwork.co.uk/dump/mysql-latest.tar.bz2 /tmp/
-# run the postgres process in the container?
-# i saw this as the CMD for the postgres image
-# also tried running /usr/local/bin/docker-entrypoint.sh
+# the first stage of our build will extract the layers
+FROM eclipse-temurin:17.0.3_7-jre-jammy as builder
+WORKDIR application
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} application.jar
+RUN java -Djarmode=layertools -jar application.jar extract
 
-RUN ls -l /tmp && \    
-    tar xfvj /tmp/mysql-latest.tar.bz2 && \
-    cp sde*/*.sql /tmp/sde.sql
-
-
-# final build stage
-FROM mysql:8.0.29-oracle
-COPY --from=builder /tmp/sde.sql /docker-entrypoint-initdb.d
-ENV MYSQL_ROOT_PASSWORD=eve
-ENV MYSQL_DATABASE=eve-sde
-ENV MYSQL_USER=eve
-ENV MYSQL_PASSWORD=eve
+# the second stage of our build will copy the extracted layers
+FROM eclipse-temurin:17.0.3_7-jre-jammy
+WORKDIR application
+RUN addgroup --gid 1000 spring && adduser --uid 1000 --gid 1000 spring
+USER spring:spring
+COPY --from=builder application/dependencies/ ./
+COPY --from=builder application/spring-boot-loader/ ./
+COPY --from=builder application/snapshot-dependencies/ ./
+COPY --from=builder application/application/ ./
+ENTRYPOINT ["java", "org.springframework.boot.loader.JarLauncher"]
