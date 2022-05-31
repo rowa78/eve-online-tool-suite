@@ -10,7 +10,7 @@
 	</parent>
 
 	<groupId>de.ronnywalter.eve</groupId>
-	<artifactId>sde</artifactId>
+	<artifactId>eve-sde</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<name>sde</name>
 	<description>Rest Services for SDE</description>
