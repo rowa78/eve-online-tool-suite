@@ -27,5 +27,5 @@ jobs:
     - name: Build sde
       run: mvn -B install --file eve-sde/pom.xml
     - name: Build the eve-sde Docker image  
-      run: docker build eve-sde --file Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build eve-sde --file eve-sde/Dockerfile --tag my-image-name:$(date +%s)
  
