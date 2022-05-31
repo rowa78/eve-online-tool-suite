@@ -23,6 +23,6 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build dto
-      run: mvn -B package --file dto/pom.xml
+      run: mvn -B install --file dto/pom.xml
     - name: Build sde
-      run: mvn -B package --file eve-sde/pom.xml
+      run: mvn -B install --file eve-sde/pom.xml
