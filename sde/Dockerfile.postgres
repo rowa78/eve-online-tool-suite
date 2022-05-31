@@ -1,0 +1,31 @@
+FROM postgres:14.3 AS builder
+ADD https://www.fuzzwork.co.uk/dump/postgres-schema-latest.dmp.bz2 /tmp/
+ADD prepare.sh /tmp/prepare.sh
+# run the postgres process in the container?
+# i saw this as the CMD for the postgres image
+# also tried running /usr/local/bin/docker-entrypoint.sh
+
+RUN ls -l /tmp && \
+    apt update && \
+    apt install -y bzip2 && \
+    bzip2 -d /tmp/postgres-schema-latest.dmp.bz2 && \
+    chown postgres /tmp/postgres-schema-latest.dmp && \
+    chown postgres /tmp/prepare.sh && \
+    chmod 750 /tmp/prepare.sh && \
+    mkdir -p /data && \
+    chown postgres /data
+USER postgres
+
+ENV POSTGRES_PASSWORD=eve
+ENV POSTGRES_DB=eve-sde
+ENV POSTGRES_USER=eve
+ENV PGDATA=/data
+
+RUN /tmp/prepare.sh
+
+# final build stage
+FROM postgres:14.3
+
+COPY --from=builder /data /var/lib/postgresql/data
+
+
