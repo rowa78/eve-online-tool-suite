@@ -29,6 +29,8 @@ jobs:
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
         restore-keys: |
           ${{ runner.os }}-maven-
+    - name: switch docker driver
+      run: docker buildx create --use
     - name: Build dto
       run: mvn -B install --file dto/pom.xml
     - name: Build sde
