@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot'
+}
+
+version 'unspecified'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'com.google.guava:guava:31.0.1-jre'
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+    //implementation 'org.springframework.cloud:spring-cloud-dataflow-rest-client:2.9.2'
+    implementation 'org.modelmapper:modelmapper:3.0.0'
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.13.4'
+    implementation(project(":eve-esi-client"))
+    implementation(project(":eve-dto"))
+    implementation(project(":eve-rest-clients"))
+
+}
+
+springBoot {
+    buildInfo()
+}
+
+test {
+    useJUnitPlatform()
+}

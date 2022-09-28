@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: eve-job-marketorder-update
+  main:
+    web-application-type: none
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    defaultZone: http://localhost:8761/eureka
+
+logging:
+  level:
+    root: INFO
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 300000

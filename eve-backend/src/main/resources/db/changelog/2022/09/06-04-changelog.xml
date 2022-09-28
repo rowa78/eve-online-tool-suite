@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1662500867995-1" author="ronny (generated)">
+        <addColumn tableName="eve_job_data">
+            <column name="created_date" type="DATETIME"/>
+            <column name="modified_date" type="DATETIME"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="1662500867995-2" author="ronny (generated)">
+        <addNotNullConstraint columnName="created_date" tableName="eve_job_data"/>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,74 @@
+server:
+  port : 8086
+
+spring:
+  application:
+    name: eve-jobservice
+  datasource:
+    url: ${JDBC_DATABASE_URL:jdbc:postgresql://localhost:32400/eve_dev}
+    username: ${JDBC_DATABASE_USERNAME:eve}
+    password: ${JDBC_DATABASE_PASSWORD:eve}
+  liquibase:
+    change-log: classpath:/db/db.changelog-master.xml
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+    spring:
+      liquibase:
+        enabled: true
+  cloud:
+    kubernetes:
+      enabled: false
+
+logging:
+  level:
+    root: INFO
+    de:
+      ronnywalter:
+        eve: INFO
+    com.github.kagkarlsson: INFO
+    com:
+      github:
+        scribejava: DEBUG
+    org:
+#      hibernate:
+#        SQL: debug
+      springframework:
+        security: INFO
+        scheduling: INFO
+      quartz: INFO
+
+#springdoc:
+#  packagesToScan: de.ronnywalter.eve
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    defaultZone: http://localhost:8761/eureka
+
+db-scheduler:
+  threads: 25
+
+#org:
+#  jobrunr:
+#    job-scheduler:
+#      enabled: true
+#    background-job-server:
+#      enabled: true
+#      worker-count: 24
+#    dashboard:
+#      enabled: true
+#      port: 8000
+

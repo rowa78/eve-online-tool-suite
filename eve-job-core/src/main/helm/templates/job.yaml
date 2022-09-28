@@ -1,0 +1,47 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "eve-job.fullname" . }}
+  labels:
+    {{- include "eve-job.labels" . | nindent 4 }}
+spec:
+  ttlSecondsAfterFinished: 10
+  template:
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "eve-job.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args:
+            - --mode=register
+            - --jobName={{ include "eve-job.fullname" . }}
+            - --image={{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}
+            - --spring.rabbitmq.host={{ .Values.rabbitmq.host }}
+            - --spring.rabbitmq.port={{ .Values.rabbitmq.port }}
+            - --spring.rabbitmq.username={{ .Values.rabbitmq.username }}
+            - --spring.rabbitmq.password={{ .Values.rabbitmq.password }}
+            - --scheduler.queues.jobs.schedule=eve.jobs.schedule
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      restartPolicy: Never
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

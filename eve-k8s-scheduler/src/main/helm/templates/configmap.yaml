@@ -1,0 +1,56 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: eve-k8s-scheduler-kubernetes
+data:
+  application.yaml: |-
+    server:
+      port: 8080
+    spring:
+      application:
+        name: eve-k8s-scheduler
+      datasource:
+        url: ${JDBC_DATABASE_URL:jdbc:postgresql://pc-0:32400/eve_dev}
+        username: ${JDBC_DATABASE_USERNAME:eve}
+        password: ${JDBC_DATABASE_PASSWORD:eve}
+      jpa:
+        hibernate:
+          ddl-auto: validate
+        open-in-view: false
+        show-sql: false
+        properties:
+          hibernate:
+            format_sql: true
+      rabbitmq:
+        host: {{ .Values.rabbitmq.host }}
+        port: {{ .Values.rabbitmq.port }}
+        username: ${RABBIT_USERNAME}
+        password: ${RABBIT_PASSWORD}
+  
+    management:
+      endpoints:
+        web:
+          exposure:
+            include: "*"
+      endpoint:
+        health:
+          show-details: ALWAYS
+  
+    logging:
+      level:
+        root: INFO
+        de:
+          ronnywalter:
+            eve: INFO
+        com:
+          github:
+            kagkarlsson: DEBUG
+  
+    namespace: eve-dev
+    
+    scheduler:
+      namespace: {{ .Values.k8sscheduler.namespace }}
+      serviceAccount: {{ include "eve-k8s-scheduler.serviceAccountName" . }}
+      queues:
+        jobs:
+          schedule: eve.jobs.schedule

@@ -1,0 +1,3 @@
+spring:
+  application:
+    name: eve-k8s-scheduler

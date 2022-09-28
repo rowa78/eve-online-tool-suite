@@ -1,0 +1,95 @@
+server:
+  port : 8082
+
+spring:
+  application:
+    name: eve-backend
+  datasource:
+    url: ${JDBC_DATABASE_URL:jdbc:postgresql://localhost:5432/eve_dev}
+    username: ${JDBC_DATABASE_USERNAME:eve}
+    password: ${JDBC_DATABASE_PASSWORD:eve}
+  liquibase:
+    change-log: classpath:/db/db.changelog-master.xml
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+    spring:
+      liquibase:
+        enabled: false
+  cloud:
+    kubernetes:
+      enabled: false
+    dataflow:
+      client:
+        serverUri: http://localhost:32500
+    task:
+      # See: https://github.com/spring-cloud/spring-cloud-dataflow/issues/4940
+      initialize-enabled: false
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: eve
+    password: eve
+
+eve:
+  esi:
+    clientId: ${CLIENT_ID}
+    clientSecret: ${CLIENT_SECRET}
+    authorization-uri: https://login.eveonline.com/oauth/authorize
+    token-uri: https://login.eveonline.com/oauth/token
+
+logging:
+  level:
+    root: INFO
+    de:
+      ronnywalter:
+        eve: INFO
+    com.github.kagkarlsson: INFO
+    com:
+      github:
+        scribejava: DEBUG
+    org:
+#      hibernate:
+#        SQL: debug
+      springframework:
+        security: INFO
+        scheduling: INFO
+      quartz: INFO
+
+#springdoc:
+#  packagesToScan: de.ronnywalter.eve
+
+structures:
+  file: structures_markets.txt
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    defaultZone: http://localhost:8761/eureka
+
+db-scheduler:
+  threads: 25
+
+#org:
+#  jobrunr:
+#    job-scheduler:
+#      enabled: true
+#    background-job-server:
+#      enabled: true
+#      worker-count: 24
+#    dashboard:
+#      enabled: true
+#      port: 8000
+

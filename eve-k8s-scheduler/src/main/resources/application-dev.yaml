@@ -1,0 +1,51 @@
+server:
+  port : 9000
+
+spring:
+  application:
+    name: eve-k8s-scheduler
+  datasource:
+    url: ${JDBC_DATABASE_URL:jdbc:postgresql://pc-0:32400/eve_dev}
+    username: ${JDBC_DATABASE_USERNAME:eve}
+    password: ${JDBC_DATABASE_PASSWORD:eve}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+  rabbitmq:
+    host: pc-0
+    port: 32647
+    username: user
+    password: user
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+logging:
+  level:
+    root: INFO
+    de:
+      ronnywalter:
+        eve: INFO
+    com:
+      github:
+        kagkarlsson: DEBUG
+
+
+
+k8s-scheduler:
+  namespace: eve-dev
+  serviceAccount: eve-backend
+  queues:
+    jobs:
+      schedule: queues.job.schedule

@@ -1,0 +1,51 @@
+plugins {
+    id 'java'
+    id "org.openapi.generator" version "6.0.1"
+}
+
+version '1.10.1'
+
+repositories {
+    mavenCentral()
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+            srcDir 'build/generated/src/main/java'
+        }
+    }
+}
+
+dependencies {
+    implementation 'com.google.code.findbugs:jsr305:3.0.2'
+    implementation 'org.openapitools:jackson-databind-nullable:0.2.2'
+    implementation 'io.swagger:swagger-annotations:1.5.18'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+}
+
+test {
+    useJUnitPlatform()
+}
+
+openApiGenerate {
+    generatorName = "java"
+    inputSpec = "$projectDir/src/main/resources/swagger-1.10.1.json".toString()
+    outputDir = "$buildDir/generated".toString()
+    apiPackage = "net.evetech.esi.client.api"
+    modelPackage = "net.evetech.esi.client.model"
+    generateModelTests = false
+    generateApiTests = false
+    library = "resttemplate"
+    configOptions = [
+            dateLibrary: "java8",
+            java8: "true",
+            hideGenerationTimestamp: "true",
+            serializableModel: "true"
+    ]
+}
+
+
+compileJava.dependsOn tasks.openApiGenerate

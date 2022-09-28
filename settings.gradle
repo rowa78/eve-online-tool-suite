@@ -1,0 +1,36 @@
+pluginManagement {
+    repositories {
+        maven { url = 'https://maven.vaadin.com/vaadin-prereleases' }
+        gradlePluginPortal()
+    }
+    plugins {
+        id 'com.vaadin' version "${vaadinVersion}"
+    }
+}
+
+rootProject.name = 'eve-online-tools-parent'
+include 'eve-backend'
+include 'eve-esi-client'
+include 'eve-dto'
+include 'eve-sde'
+include 'eve-service-registry'
+include 'eve-job-core'
+include 'eve-job-helloworld'
+include 'eve-job-universeimport'
+include 'eve-job-typeimport'
+include 'eve-job-structure-import'
+include 'eve-job-marketgroup-import'
+include 'eve-job-character-update'
+include 'eve-job-corp-update'
+include 'eve-job-wallet-update'
+include 'eve-job-char-location-update'
+include 'eve-token-service'
+include 'eve-frontend'
+include 'eve-rest-clients'
+include 'postgresql-helm'
+include 'scdf'
+include 'eve-sde-fuzzwork'
+include 'eve-job-service'
+include 'eve-k8s-scheduler'
+include 'eve-job-marketorder-update'
+

@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: eve-job-universeimport
+  main:
+    web-application-type: none
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    defaultZone: http://localhost:8761/eureka
+
+logging:
+  level:
+    root: INFO

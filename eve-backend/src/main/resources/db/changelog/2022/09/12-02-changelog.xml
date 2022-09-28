@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1662982056396-1" author="ronny (generated)">
+        <dropForeignKeyConstraint baseTableName="eve_job_data_arguments"
+                                  constraintName="fk_eve_job_data_arguments_on_job_data"/>
+    </changeSet>
+    <changeSet id="1662982056396-2" author="ronny (generated)">
+        <dropTable cascadeConstraints="true" tableName="eve_job_data_arguments"/>
+    </changeSet>
+    <changeSet id="1662982056396-3" author="ronny (generated)">
+        <dropColumn columnName="run_count" tableName="eve_job_data"/>
+    </changeSet>
+
+</databaseChangeLog>

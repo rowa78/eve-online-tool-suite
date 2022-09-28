@@ -1,0 +1,92 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven { setUrl("https://maven.vaadin.com/vaadin-prereleases") }
+        maven { setUrl("https://maven.vaadin.com/vaadin-addons") }
+    }
+}
+plugins {
+    id 'org.springframework.boot'
+    id 'io.spring.dependency-management'
+    id 'java'
+    id 'com.vaadin'
+    id 'com.google.cloud.tools.jib'
+    id 'org.unbroken-dome.helm'
+    id 'org.unbroken-dome.helm-publish'
+}
+
+defaultTasks("clean", "build")
+
+repositories {
+    mavenCentral()
+    maven { setUrl("https://maven.vaadin.com/vaadin-prereleases") }
+    maven { setUrl("https://maven.vaadin.com/vaadin-addons") }
+}
+
+configurations {
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
+}
+
+dependencies {
+    implementation('com.vaadin:vaadin-spring-boot-starter')
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    //implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+    implementation 'org.springframework.cloud:spring-cloud-starter-kubernetes-fabric8'
+    implementation 'org.springframework.cloud:spring-cloud-starter-loadbalancer'
+
+    //implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+
+    implementation 'com.auth0:java-jwt:3.19.1'
+    implementation 'com.auth0:jwks-rsa:0.21.1'
+    implementation 'com.github.scribejava:scribejava-core:8.3.1'
+
+    //implementation(project(":eve-core"))
+    implementation(project(":eve-dto"))
+    implementation(project(":eve-rest-clients"))
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "com.vaadin:vaadin-bom:$vaadinVersion"
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
+
+// The following pnpmEnable = true is not needed as pnpm is used by default,
+// this is just an example of how to configure the Gradle Vaadin Plugin:
+// for more configuration options please see: https://vaadin.com/docs/latest/guide/start/gradle/#all-options
+vaadin {
+    pnpmEnable = true
+    //productionMode = true
+
+}
+
+helm {
+}
+
+
+jib.to.image = "r0wa/${project.name}:${version}"
+jib.from {
+    platforms {
+        //platform {
+        //    architecture = 'amd64'
+        //    os = 'linux'
+        //}
+        platform {
+            architecture = 'arm64'
+            os = 'linux'
+        }
+    }
+}

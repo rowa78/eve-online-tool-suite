@@ -1,0 +1,57 @@
+server:
+  port : 8085
+
+spring:
+  application:
+    name: eve-frontend
+  security:
+#    oauth2:
+#      client:
+#        registration:
+#          eve-authentication:
+#            clientId: ${CLIENT_ID}
+#            clientSecret: ${CLIENT_SECRET}
+#            authorization-grant-type: authorization_code
+#            redirect-uri: 'http://localhost:8085/login/oauth2/code/eve'
+#           client-authentication-method: basic
+#        provider:
+#          eve-authentication:
+#            authorization-uri: https://login.eveonline.com/oauth/authorize
+#            token-uri: https://login.eveonline.com/oauth/token
+#            user-info-uri: https://login.eveonline.com/oauth/verify
+#            user-name-attribute: CharacterID
+#            user-info-authentication-method: header
+
+eve:
+  esi:
+    clientId: ${CLIENT_ID}
+    clientSecret: ${CLIENT_SECRET}
+    authorization-uri: https://login.eveonline.com/oauth/authorize
+    token-uri: https://login.eveonline.com/oauth/token
+    user-info-uri: https://login.eveonline.com/oauth/verify
+    redirect-uri: 'http://localhost:8085/eve-esi/code/eve-characters'
+    scope:
+      - esi-characters.read_standings.v1
+      - esi-characters.read_corporation_roles.v1
+      - esi-universe.read_structures.v1
+      - esi-markets.structure_markets.v1
+      - esi-markets.read_character_orders.v1
+      - esi-search.search_structures.v1
+      - esi-assets.read_assets.v1
+      - esi-wallet.read_character_wallet.v1
+      - esi-contracts.read_character_contracts.v1
+      - esi-wallet.read_corporation_wallets.v1
+      - esi-assets.read_corporation_assets.v1
+      - esi-markets.read_corporation_orders.v1
+      - esi-corporations.read_divisions.v1
+      - esi-wallet.read_corporation_wallet.v1
+      - esi-ui.open_window.v1
+      - esi-planets.manage_planets.v1
+      - esi-location.read_location.v1
+      - esi-location.read_ship_type.v1
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    defaultZone: http://localhost:8761/eureka

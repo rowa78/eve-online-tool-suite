@@ -1,0 +1,123 @@
+server:
+  port : 8080
+
+spring:
+  application:
+    name: evetoolsuite-backend
+  datasource:
+    url: ${JDBC_DATABASE_URL:jdbc:postgresql://localhost:5432/eve_dev}
+    username: ${JDBC_DATABASE_USERNAME:eve}
+    password: ${JDBC_DATABASE_PASSWORD:eve}
+  liquibase:
+    change-log: classpath:/db/db.changelog-master.xml
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    show-sql: false
+    properties:
+      hibernate:
+   #     generate_statistics: true
+        order_inserts: true
+        jdbc:
+          batch_size: 1000
+        format_sql: true
+    spring:
+      liquibase:
+        enabled: true
+  cloud:
+    kubernetes:
+      enabled: true
+    dataflow:
+      client:
+        serverUri: http://scdf:9393
+    task:
+      # See: https://github.com/spring-cloud/spring-cloud-dataflow/issues/4940
+      initialize-enabled: false
+  rabbitmq:
+    host: rabbitmq
+    port: 5672
+    username: user
+    password: user
+#  cloud:
+#    dataflow:
+#      client:
+#        serverUri: http://scdf-spring-cloud-dataflow-server:8080
+
+eve:
+  esi:
+    clientId: ${CLIENT_ID}
+    clientSecret: ${CLIENT_SECRET}
+    authorization-uri: https://login.eveonline.com/oauth/authorize
+    token-uri: https://login.eveonline.com/oauth/token
+
+logging:
+  level:
+    root: INFO
+    de:
+      ronnywalter:
+        eve: INFO
+    com:
+      github:
+        scribejava: DEBUG
+    org:
+      hibernate:
+        SQL: INFO
+
+#springdoc:
+#  packagesToScan: de.ronnywalter.eve
+
+structures:
+  file: structures_markets.txt
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    defaultZone: http://localhost:8761/eureka
+
+db-scheduler:
+  enabled: false
+  threads: 50
+  heartbeat-interval: 1m
+
+
+jobs:
+  enabled: true
+  jobs:
+    - name: UniverseImport
+      image: r0wa/eve-job-universeimport
+      version: 0.0.1-SNAPSHOT
+    #- name: TypeImport
+    #  image: r0wa/eve-job-typeimport
+    #  version: 0.0.1-SNAPSHOT
+    #- name: MarketGroupImport
+    #  image: r0wa/eve-job-marketgroup-import
+    #  version: 0.0.1-SNAPSHOT
+    #- name: CharacterUpdate
+    #  image: r0wa/eve-job-character-update
+    #  version: 0.0.1-SNAPSHOT
+    #- name: WalletUdate
+    #  image: r0wa/eve-job-wallet-update
+    #  version: 0.0.1-SNAPSHOT
+
+#org:
+#  jobrunr:
+#    job-scheduler:
+#      enabled: true
+#    background-job-server:
+#      enabled: true
+#      worker-count: 24
+#    dashboard:
+#      enabled: true
+#      port: 8000
+

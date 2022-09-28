@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.24/13a394eed5c4f9efb2a6d956e2086f1d81e857d9/lombok-1.18.24.jar" />
+        </processorPath>
+        <module name="eve-online-tools-parent.eve-job-service.main" />
+        <module name="eve-online-tools-parent.eve-service-registry.main" />
+        <module name="eve-online-tools-parent.eve-rest-clients.main" />
+        <module name="eve-online-tools-parent.scdf.main" />
+        <module name="eve-online-tools-parent.eve-esi-client.main" />
+        <module name="eve-online-tools-parent.eve-job-typeimport.main" />
+        <module name="eve-online-tools-parent.eve-token-service.main" />
+        <module name="eve-online-tools-parent.postgresql-helm.main" />
+        <module name="eve-online-tools-parent.eve-job-helloworld.main" />
+        <module name="eve-online-tools-parent.eve-sde-fuzzwork.main" />
+        <module name="eve-online-tools-parent.eve-job-marketorder-update.main" />
+        <module name="eve-online-tools-parent.eve-job-char-location-update.main" />
+        <module name="eve-online-tools-parent.eve-job-marketgroup-import.main" />
+        <module name="eve-online-tools-parent.eve-job-universeimport.main" />
+        <module name="eve-online-tools-parent.eve-k8s-scheduler.main" />
+        <module name="eve-online-tools-parent.eve-frontend.main" />
+        <module name="eve-online-tools-parent.eve-job-core.main" />
+        <module name="eve-online-tools-parent.eve-job-structure-import.main" />
+        <module name="eve-online-tools-parent.eve-job-wallet-update.main" />
+        <module name="eve-online-tools-parent.eve-dto.main" />
+        <module name="eve-online-tools-parent.eve-backend.main" />
+        <module name="eve-online-tools-parent.eve-job-character-update.main" />
+        <module name="eve-online-tools-parent.eve-job-corp-update.main" />
+        <module name="eve-online-tools-parent.eve-sde.main" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="11" />
+  </component>
+</project>

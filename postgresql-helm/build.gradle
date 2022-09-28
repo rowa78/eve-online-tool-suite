@@ -1,0 +1,13 @@
+plugins {
+    id 'org.unbroken-dome.helm'
+    id 'org.unbroken-dome.helm-publish'
+}
+
+helm {
+    charts {
+        postgresql {
+            chartName = 'postgresql'
+            sourceDir = file('src/main/helm')
+        }
+    }
+}

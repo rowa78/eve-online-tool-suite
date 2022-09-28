@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1662290802766-4" author="ronny (generated)">
+        <dropColumn columnName="id" tableName="eve_character_wallets"/>
+    </changeSet>
+    <changeSet id="1662290802766-2" author="ronny (generated)">
+        <addPrimaryKey columnNames="character_id" constraintName="pk_eve_character_wallets"
+                       tableName="eve_character_wallets"/>
+    </changeSet>
+
+</databaseChangeLog>
