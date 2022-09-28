@@ -1,1 +1,0 @@
-docker build --no-cache -t ghcr.io/rowa78/eve-online-tool-suite/eve-sde-mariadb:20220524 .
