@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/eve-online-tool-suite.iml" filepath="$PROJECT_DIR$/.idea/modules/eve-online-tool-suite.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/dto/eve-online-tool-suite.dto.iml" filepath="$PROJECT_DIR$/.idea/modules/dto/eve-online-tool-suite.dto.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/dto/eve-online-tool-suite.dto.main.iml" filepath="$PROJECT_DIR$/.idea/modules/dto/eve-online-tool-suite.dto.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/dto/eve-online-tool-suite.dto.test.iml" filepath="$PROJECT_DIR$/.idea/modules/dto/eve-online-tool-suite.dto.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/eve-backend/eve-online-tool-suite.eve-backend.iml" filepath="$PROJECT_DIR$/.idea/modules/eve-backend/eve-online-tool-suite.eve-backend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/eve-backend/eve-online-tool-suite.eve-backend.main.iml" filepath="$PROJECT_DIR$/.idea/modules/eve-backend/eve-online-tool-suite.eve-backend.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/eve-backend/eve-online-tool-suite.eve-backend.test.iml" filepath="$PROJECT_DIR$/.idea/modules/eve-backend/eve-online-tool-suite.eve-backend.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/eve-esi-client/eve-online-tool-suite.eve-esi-client.iml" filepath="$PROJECT_DIR$/.idea/modules/eve-esi-client/eve-online-tool-suite.eve-esi-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/eve-esi-client/eve-online-tool-suite.eve-esi-client.main.iml" filepath="$PROJECT_DIR$/.idea/modules/eve-esi-client/eve-online-tool-suite.eve-esi-client.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/eve-esi-client/eve-online-tool-suite.eve-esi-client.test.iml" filepath="$PROJECT_DIR$/.idea/modules/eve-esi-client/eve-online-tool-suite.eve-esi-client.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/eve-sde/eve-online-tool-suite.eve-sde.iml" filepath="$PROJECT_DIR$/.idea/modules/eve-sde/eve-online-tool-suite.eve-sde.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/eve-sde/eve-online-tool-suite.eve-sde.main.iml" filepath="$PROJECT_DIR$/.idea/modules/eve-sde/eve-online-tool-suite.eve-sde.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/eve-sde/eve-online-tool-suite.eve-sde.test.iml" filepath="$PROJECT_DIR$/.idea/modules/eve-sde/eve-online-tool-suite.eve-sde.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/service-registry/eve-online-tool-suite.service-registry.iml" filepath="$PROJECT_DIR$/.idea/modules/service-registry/eve-online-tool-suite.service-registry.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/service-registry/eve-online-tool-suite.service-registry.main.iml" filepath="$PROJECT_DIR$/.idea/modules/service-registry/eve-online-tool-suite.service-registry.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/service-registry/eve-online-tool-suite.service-registry.test.iml" filepath="$PROJECT_DIR$/.idea/modules/service-registry/eve-online-tool-suite.service-registry.test.iml" />
+    </modules>
+  </component>
+</project>
